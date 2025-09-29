@@ -177,6 +177,13 @@
                 <p class="empty-state" data-empty>
                   Commands will appear here once loaded.
                 </p>
+
+                <button class="btn btn-success btn-block" onclick="selectAllCommands()">
+                  <i class="fas fa-check-double"></i>
+                  Select all commands
+                </button>
+                <div class="command-list" data-type="commands"></div>
+
               </article>
 
               <article class="command-panel" id="listOfCommandsEvent" data-panel="events">
@@ -197,6 +204,11 @@
                 <p class="empty-state" data-empty>
                   Event commands will appear here once loaded.
                 </p>
+                <button class="btn btn-success btn-block" onclick="selectAllEvents()">
+                  <i class="fas fa-bolt-lightning"></i>
+                  Select all events
+                </button>
+                <div class="command-list" data-type="handleEvent"></div>
               </article>
 
               <article class="command-panel" id="prefixOfCommands">

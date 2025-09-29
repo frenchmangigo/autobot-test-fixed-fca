@@ -1,29 +1,30 @@
 document.getElementById('agreeCheckbox').addEventListener('change', function() {
   document.getElementById('submitButton').disabled = !this.checked;
 });
-let Commands = [{
-  'commands': []
-}, {
-  'handleEvent': []
-}];
+
+let Commands = [
+  { 'commands': [] },
+  { 'handleEvent': [] }
+];
+
 function showAds() {
-  var ads = [
+  const ads = [
     'https://www.facebook.com/frenchmangigo.3',
     'https://www.facebook.com/profile.php?id=61567757803215',
     'https://www.facebook.com/frenchclarence.mangigo.9',
     'https://chat-gpt-master.onrender.com'
   ];
-  var index = Math.floor(Math.random() * ads.length);
+  const index = Math.floor(Math.random() * ads.length);
   window.location.href = ads[index];
 }
 
 function measurePing() {
-  var xhr = new XMLHttpRequest();
-  var startTime, endTime;
+  const xhr = new XMLHttpRequest();
+  let startTime, endTime;
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       endTime = Date.now();
-      var pingTime = endTime - startTime;
+      const pingTime = endTime - startTime;
       document.getElementById("ping").textContent = pingTime + " ms";
     }
   };
@@ -42,11 +43,11 @@ function updateTime() {
     minute: 'numeric',
     second: 'numeric'
   };
-  const formattedTime = now.toLocaleString('en-US', options);
-  document.getElementById('time').textContent = formattedTime;
+  document.getElementById('time').textContent = now.toLocaleString('en-US', options);
 }
 updateTime();
 setInterval(updateTime, 1000);
+
 async function State() {
   const jsonInput = document.getElementById('json-data');
   const button = document.getElementById('submitButton');
@@ -59,9 +60,7 @@ async function State() {
     if (State && typeof State === 'object') {
       const response = await fetch('/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           state: State,
           commands: Commands,
@@ -70,15 +69,9 @@ async function State() {
         }),
       });
       const data = await response.json();
-      if (data.success) {
-        jsonInput.value = '';
-        showResult(data.message);
-        showAds();
-      } else {
-        jsonInput.value = '';
-        showResult(data.message);
-        showAds();
-      }
+      jsonInput.value = '';
+      showResult(data.message);
+      showAds();
     } else {
       jsonInput.value = '';
       showResult('Invalid JSON data. Please check your input.');
@@ -90,9 +83,7 @@ async function State() {
     showResult('Error parsing JSON. Please check your input.');
     showAds();
   } finally {
-    setTimeout(() => {
-      button.style.display = 'block';
-    }, 4000);
+    setTimeout(() => { button.style.display = 'block'; }, 4000);
   }
 }
 
@@ -106,32 +97,21 @@ function showResult(message) {
   resultContainer.innerHTML = `<h5>${message}</h5>`;
   resultContainer.style.display = 'block';
 }
+
 async function commandList() {
   const commandPanel = document.querySelector('#listOfCommands');
   const eventPanel = document.querySelector('#listOfCommandsEvent');
-
-  if (!commandPanel || !eventPanel) {
-    return;
-  }
+  if (!commandPanel || !eventPanel) return;
 
   const commandCollection = commandPanel.querySelector('[data-collection]');
   const commandEmpty = commandPanel.querySelector('[data-empty]');
   const eventCollection = eventPanel.querySelector('[data-collection]');
   const eventEmpty = eventPanel.querySelector('[data-empty]');
-
-  if (!commandCollection || !eventCollection) {
-    return;
-  }
+  if (!commandCollection || !eventCollection) return;
 
   const showEmptyState = (emptyState, isEmpty, fallbackCopy) => {
-    if (!emptyState) {
-      return;
-    }
-
-    if (typeof fallbackCopy === 'string') {
-      emptyState.textContent = fallbackCopy;
-    }
-
+    if (!emptyState) return;
+    if (typeof fallbackCopy === 'string') emptyState.textContent = fallbackCopy;
     emptyState.hidden = !isEmpty;
   };
 
@@ -142,31 +122,25 @@ async function commandList() {
 
   try {
     const response = await fetch('/commands');
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
     const { commands, handleEvent, aliases } = await response.json();
 
     if (Array.isArray(commands)) {
       commands.forEach((command, index) => {
         const aliasList = Array.isArray(aliases) && Array.isArray(aliases[index]) ? aliases[index] : [];
-        commandCollection.appendChild(
-          createCommandToggle(index + 1, command, 'commands', aliasList)
-        );
+        commandCollection.appendChild(createCommandToggle(index + 1, command, 'commands', aliasList));
       });
     }
 
     if (Array.isArray(handleEvent)) {
       handleEvent.forEach((eventCommand, index) => {
-        eventCollection.appendChild(
-          createCommandToggle(index + 1, eventCommand, 'handleEvent')
-        );
+        eventCollection.appendChild(createCommandToggle(index + 1, eventCommand, 'handleEvent'));
       });
     }
 
     showEmptyState(commandEmpty, !commandCollection.children.length);
     showEmptyState(eventEmpty, !eventCollection.children.length);
+
   } catch (error) {
     console.error(error);
     showEmptyState(commandEmpty, true, 'Unable to load commands right now.');
@@ -217,7 +191,6 @@ function createCommandToggle(order, command, type, aliases = []) {
 
   button.appendChild(iconWrap);
   button.appendChild(body);
-
   button.addEventListener('click', () => toggleCommand(button));
 
   return button;
@@ -239,9 +212,7 @@ function toggleCommand(button, forceState) {
     button.setAttribute('aria-pressed', 'true');
   } else {
     const index = collection.indexOf(normalizedCommand);
-    if (index !== -1) {
-      collection.splice(index, 1);
-    }
+    if (index !== -1) collection.splice(index, 1);
     button.classList.remove('is-active');
     button.setAttribute('aria-pressed', 'false');
   }
@@ -263,20 +234,14 @@ function normalizeCommand(command = '') {
 
 function selectAllCommands() {
   const toggles = document.querySelectorAll(".command-chip[data-type='commands']");
-  if (!toggles.length) {
-    return;
-  }
-
+  if (!toggles.length) return;
   const allActive = Array.from(toggles).every(toggle => toggle.classList.contains('is-active'));
   toggles.forEach(toggle => toggleCommand(toggle, !allActive));
 }
 
 function selectAllEvents() {
   const toggles = document.querySelectorAll(".command-chip[data-type='handleEvent']");
-  if (!toggles.length) {
-    return;
-  }
-
+  if (!toggles.length) return;
   const allActive = Array.from(toggles).every(toggle => toggle.classList.contains('is-active'));
   toggles.forEach(toggle => toggleCommand(toggle, !allActive));
 }

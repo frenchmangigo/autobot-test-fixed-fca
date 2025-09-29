@@ -315,7 +315,9 @@ button {
 
 .command-columns {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.75rem;
+  align-items: start;
 }
 
 .command-panel {
