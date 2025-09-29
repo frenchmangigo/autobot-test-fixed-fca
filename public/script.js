@@ -103,150 +103,121 @@ function showResult(message) {
 }
 async function commandList() {
   try {
-    const [listOfCommands, listOfCommandsEvent] = [document.getElementById('listOfCommands'), document.getElementById('listOfCommandsEvent')];
+    const listOfCommands = document.querySelector('#listOfCommands .command-list');
+    const listOfCommandsEvent = document.querySelector('#listOfCommandsEvent .command-list');
+
+    if (!listOfCommands || !listOfCommandsEvent) {
+      return;
+    }
+
+    listOfCommands.innerHTML = '';
+    listOfCommandsEvent.innerHTML = '';
+
     const response = await fetch('/commands');
     const {
       commands,
       handleEvent,
       aliases
     } = await response.json();
-    [commands, handleEvent].forEach((command, i) => {
-      command.forEach((command, index) => {
-        const container = createCommand(i === 0 ? listOfCommands : listOfCommandsEvent, index + 1, command, i === 0 ? 'commands' : 'handleEvent', aliases[index] || []);
-        i === 0 ? listOfCommands.appendChild(container) : listOfCommandsEvent.appendChild(container);
+
+    if (Array.isArray(commands)) {
+      commands.forEach((command, index) => {
+        const aliasList = Array.isArray(aliases) && Array.isArray(aliases[index]) ? aliases[index] : [];
+        listOfCommands.appendChild(createCommandToggle(index + 1, command, 'commands', aliasList));
       });
-    });
+    }
+
+    if (Array.isArray(handleEvent)) {
+      handleEvent.forEach((eventCommand, index) => {
+        listOfCommandsEvent.appendChild(createCommandToggle(index + 1, eventCommand, 'handleEvent'));
+      });
+    }
   } catch (error) {
     console.log(error);
   }
 }
 
-function createCommand(element, order, command, type, aliases) {
-  const container = document.createElement('div');
-  container.classList.add('form-check', 'form-switch');
-  container.onclick = toggleCheckbox;
-  const checkbox = document.createElement('input');
-  checkbox.classList.add('form-check-input', type === 'handleEvent' ? 'handleEvent' : 'commands');
-  checkbox.type = 'checkbox';
-  checkbox.role = 'switch';
-  checkbox.id = `flexSwitchCheck_${order}`;
-  const label = document.createElement('label');
-  label.classList.add('form-check-label', type === 'handleEvent' ? 'handleEvent' : 'commands');
-  label.for = `flexSwitchCheck_${order}`;
-  label.textContent = `${order}. ${command}`;
-  container.appendChild(checkbox);
-  container.appendChild(label);
-  /*
+function createCommandToggle(order, command, type, aliases = []) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.classList.add('command-toggle');
+  button.dataset.command = command;
+  button.dataset.type = type;
+  button.setAttribute('aria-pressed', 'false');
+
+  const orderBadge = document.createElement('span');
+  orderBadge.classList.add('command-order');
+  orderBadge.textContent = `${order}.`;
+
+  const name = document.createElement('span');
+  name.classList.add('command-name');
+  name.textContent = command;
+
+  button.appendChild(orderBadge);
+  button.appendChild(name);
+
   if (aliases.length > 0 && type !== 'handleEvent') {
-    const aliasText = document.createElement('span');
-    aliasText.classList.add('aliases');
-    aliasText.textContent = ` (${aliases.join(', ')})`;
-    label.appendChild(aliasText);
+    const alias = document.createElement('span');
+    alias.classList.add('command-alias');
+    alias.textContent = aliases.join(', ');
+    button.appendChild(alias);
   }
-  */
-  return container;
+
+  button.addEventListener('click', () => toggleCommand(button));
+
+  return button;
 }
 
-function toggleCheckbox() {
-  const box = [{
-    input: '.form-check-input.commands',
-    label: '.form-check-label.commands',
-    array: Commands[0].commands
-  }, {
-    input: '.form-check-input.handleEvent',
-    label: '.form-check-label.handleEvent',
-    array: Commands[1].handleEvent
-  }];
-  box.forEach(({
-    input,
-    label,
-    array
-  }) => {
-    const checkbox = this.querySelector(input);
-    const labelText = this.querySelector(label);
-    if (checkbox) {
-      checkbox.checked = !checkbox.checked;
-      if (checkbox.checked) {
-        labelText.classList.add('disable');
-        const command = labelText.textContent.replace(/^\d+\.\s/, '').split(" ")[0];
-        array.push(command);
-      } else {
-        labelText.classList.remove('disable');
-        const command = labelText.textContent.replace(/^\d+\.\s/, '').split(" ")[0];
-        const removeCommand = array.indexOf(command);
-        if (removeCommand !== -1) {
-          array.splice(removeCommand, 1);
-        }
-      }
+function toggleCommand(button, forceState) {
+  const type = button.dataset.type;
+  const command = button.dataset.command || '';
+  const collection = getCommandCollection(type);
+  const normalizedCommand = normalizeCommand(command);
+  const isActive = button.classList.contains('is-active');
+  const shouldActivate = typeof forceState === 'boolean' ? forceState : !isActive;
+
+  if (shouldActivate) {
+    if (!collection.includes(normalizedCommand)) {
+      collection.push(normalizedCommand);
     }
-  });
+    button.classList.add('is-active');
+    button.setAttribute('aria-pressed', 'true');
+  } else {
+    const index = collection.indexOf(normalizedCommand);
+    if (index !== -1) {
+      collection.splice(index, 1);
+    }
+    button.classList.remove('is-active');
+    button.setAttribute('aria-pressed', 'false');
+  }
+}
+
+function getCommandCollection(type) {
+  return type === 'handleEvent' ? Commands[1].handleEvent : Commands[0].commands;
+}
+
+function normalizeCommand(command = '') {
+  return command.split(' ')[0];
 }
 
 function selectAllCommands() {
-  const box = [{
-    input: '.form-check-input.commands',
-    array: Commands[0].commands
-  }];
-  box.forEach(({
-    input,
-    array
-  }) => {
-    const checkboxes = document.querySelectorAll(input);
-    const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-    checkboxes.forEach((checkbox) => {
-      if (allChecked) {
-        checkbox.checked = false;
-        const labelText = checkbox.nextElementSibling;
-        labelText.classList.remove('disable');
-        const command = labelText.textContent.replace(/^\d+\.\s/, '').split(" ")[0];
-        const removeCommand = array.indexOf(command);
-        if (removeCommand !== -1) {
-          array.splice(removeCommand, 1);
-        }
-      } else {
-        checkbox.checked = true;
-        const labelText = checkbox.nextElementSibling;
-        labelText.classList.add('disable');
-        const command = labelText.textContent.replace(/^\d+\.\s/, '').split(" ")[0];
-        if (!array.includes(command)) {
-          array.push(command);
-        }
-      }
-    });
-  });
+  const toggles = document.querySelectorAll(".command-toggle[data-type='commands']");
+  if (!toggles.length) {
+    return;
+  }
+
+  const allActive = Array.from(toggles).every(toggle => toggle.classList.contains('is-active'));
+  toggles.forEach(toggle => toggleCommand(toggle, !allActive));
 }
 
 function selectAllEvents() {
-  const box = [{
-    input: '.form-check-input.handleEvent',
-    array: Commands[1].handleEvent
-  }];
-  box.forEach(({
-    input,
-    array
-  }) => {
-    const checkboxes = document.querySelectorAll(input);
-    const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-    checkboxes.forEach((checkbox) => {
-      if (allChecked) {
-        checkbox.checked = false;
-        const labelText = checkbox.nextElementSibling;
-        labelText.classList.remove('disable');
-        const event = labelText.textContent.replace(/^\d+\.\s/, '').split(" ")[0];
-        const removeEvent = array.indexOf(event);
-        if (removeEvent !== -1) {
-          array.splice(removeEvent, 1);
-        }
-      } else {
-        checkbox.checked = true;
-        const labelText = checkbox.nextElementSibling;
-        labelText.classList.add('disable');
-        const event = labelText.textContent.replace(/^\d+\.\s/, '').split(" ")[0];
-        if (!array.includes(event)) {
-          array.push(event);
-        }
-      }
-    });
-  });
+  const toggles = document.querySelectorAll(".command-toggle[data-type='handleEvent']");
+  if (!toggles.length) {
+    return;
+  }
+
+  const allActive = Array.from(toggles).every(toggle => toggle.classList.contains('is-active'));
+  toggles.forEach(toggle => toggleCommand(toggle, !allActive));
 }
+
 commandList();
