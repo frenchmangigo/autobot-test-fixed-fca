@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-
     <header class="site-header">
       <nav class="navbar navbar-expand-lg navbar-dark site-nav">
         <div class="container">
@@ -47,53 +46,7 @@
                 <a class="nav-link" href="/">
                   <i class="fas fa-home"></i>
                   <span>Home</span>
-
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <i class="fas fa-robot"></i>
-          <span class="brand-text">GPT-4 Control Center</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav align-items-lg-center">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">
-                <i class="fas fa-home"></i> Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fas fa-cogs"></i> Features
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Cookies Extractor</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/step_by_step_guide">
-                  Step-by-Step Guide
-
+                  <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -114,16 +67,17 @@
       </nav>
     </header>
 
-
     <main class="page">
       <section class="hero">
         <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 hero-copy">
+          <div class="hero-inner">
+            <div class="hero-copy">
               <span class="eyebrow">Welcome aboard</span>
               <h1>Redesign your automation with confidence.</h1>
               <p class="lead">
-                Paste your chatbot cookie, decide how commands should behave, and ship an interactive experience without changing your existing workflow.
+                Paste your chatbot cookie, decide how commands should behave, and
+                ship an interactive experience without changing your existing
+                workflow.
               </p>
               <div class="hero-pillars">
                 <div class="pillar">
@@ -140,35 +94,30 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="hero-panel glass-card">
-                <header>
-                  <h2>Paste your JSON cookie</h2>
-                  <p>Handled locally in your browser — never stored.</p>
-                </header>
-                <form id="json-form" onsubmit="submitForm(event)">
-                  <div class="form-group mb-0">
-                    <textarea
-                      id="json-data"
-                      class="form-control"
-                      placeholder="Paste your JSON data here..."
-                    ></textarea>
-                  </div>
-                </form>
-                <footer class="panel-footer">
-                  <button
-                    class="btn btn-ghost"
-                    type="button"
-                    onclick="document.getElementById('json-data').focus()"
-                  >
-                    <i class="fas fa-paste"></i>
-                    Paste from clipboard
-                  </button>
-                  <span class="panel-note">
-                    Need help? Read the quick <a href="/step_by_step_guide">setup guide</a>.
-                  </span>
-                </footer>
-              </div>
+            <div class="hero-panel glass-card">
+              <header>
+                <h2>Paste your JSON cookie</h2>
+                <p>Handled locally in your browser — never stored.</p>
+              </header>
+              <form id="json-form" onsubmit="submitForm(event)">
+                <div class="form-group mb-0">
+                  <textarea
+                    id="json-data"
+                    class="form-control"
+                    placeholder="Paste your JSON data here..."
+                  ></textarea>
+                </div>
+              </form>
+              <footer class="panel-footer">
+                <p class="panel-note">
+                  Need a refresher? Visit the guide to walk through each step of
+                  the deployment process.
+                </p>
+                <button class="btn btn-ghost" onclick="commandList()">
+                  <i class="fas fa-rotate"></i>
+                  Refresh commands
+                </button>
+              </footer>
             </div>
           </div>
         </div>
@@ -176,86 +125,24 @@
 
       <section class="spotlight">
         <div class="container">
-          <div class="spotlight-card glass-card">
+          <article class="spotlight-card glass-card">
             <div class="spotlight-icon">
-              <i class="fas fa-shield-alt"></i>
+              <i class="fas fa-shield-check"></i>
             </div>
             <div class="spotlight-copy">
-              <h3>Terms &amp; Conditions</h3>
-
-    <main class="page-wrapper">
-      <section class="hero container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 hero-copy">
-            <span class="badge badge-pill badge-primary mb-3">Welcome</span>
-            <h1 class="hero-title">Seamless Command Management</h1>
-            <p class="hero-subtitle">
-              Paste your chatbot cookie, tailor the experience, and deploy with confidence.
-            </p>
-            <p class="hero-meta">
-              Make sure to review the Terms &amp; Privacy section before activating your commands.
-            </p>
-          </div>
-          <div class="col-lg-6">
-            <div class="glass-card">
-              <h2 class="section-heading">Paste Your JSON Cookie</h2>
-              <form id="json-form" onsubmit="submitForm(event)">
-                <div class="form-group mb-0">
-                  <textarea
-                    id="json-data"
-                    class="form-control centered-textarea"
-                    placeholder="Paste your JSON data here..."
-                  ></textarea>
-                </div>
-              </form>
-              <p class="helper-text">
-                Your data is processed locally in your browser. We never store cookies.
+              <h3>Respect the workflow</h3>
+              <p>
+                Our tooling stays on the safe side. Provide a disposable account
+                when possible, keep credentials secure, and never deploy
+                malicious automations.
+              </p>
+              <p>
+                If the chatbot appears unresponsive, revisit this page and
+                update the configuration. We recommend dummy accounts to avoid
+                interruptions on your primary profile.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="content-section">
-        <div class="container">
-          <div class="section-header text-center">
-            <span class="badge badge-pill badge-light">Legal</span>
-            <h2 class="section-heading">Terms &amp; Conditions</h2>
-            <p class="section-subheading">
-              Please read carefully before using the control center.
-            </p>
-          </div>
-          <div class="content-grid">
-            <article class="content-card">
-
-              <p>
-                Upon deployment or logging in, your chatbot connection remains active unless you personally access the bot's account or modify the password. This measure is in place to ensure the seamless operation and security of the chatbot.
-              </p>
-              <p>
-                Exercise caution and refrain from sharing your cookie with any third party. Your cookie contains sensitive information crucial to the confidentiality and security of your account and the connected chatbot.
-              </p>
-              <p>
-                As the service provider, we disclaim responsibility for any unauthorized account access. Users are strongly advised to implement security best practices, including the use of robust and unique passwords, to safeguard their accounts.
-              </p>
-              <p>
-                Accessing the bot's account may lead to a disruption in service. It is strongly recommended not to attempt to access the bot's account to maintain the continuous functionality of the chatbot.
-              </p>
-              <p>
-                If the chatbot is unresponsive, kindly return to this website. If issues persist, consider changing the account to ensure uninterrupted service.
-              </p>
-              <p>
-                We, as the service provider, disclaim responsibility for any account locking or suspension on the provided account. Users are expected to adhere to the terms of service of the hosting platform.
-              </p>
-              <p>
-                For added security, it is highly recommended to use dummy or disposable accounts when interacting with the chatbot.
-              </p>
-              <p>
-                Users are strictly prohibited from employing the chatbot for malicious activities. Violation of this rule may result in the termination of access to the chatbot and may have legal consequences.
-
-            </div>
-            </article>
-
-          </div>
+          </article>
         </div>
       </section>
 
@@ -265,185 +152,147 @@
             <span class="eyebrow">Configuration</span>
             <h2>Command builder</h2>
             <p>
-              Tune the assistant in a few steps. Toggle the command groups you need, pick a prefix, and confirm your admin UID.
+              Toggle the command tiles you need. Everything is clickable, so you
+              can move fast as the command list grows.
             </p>
           </header>
 
-          <div class="command-layout">
-            <div class="command-grid">
-              <article class="command-card" id="listOfCommands">
-                <div class="card-header">
-                  <div class="card-icon"><i class="fas fa-list-check"></i></div>
-                  <h3>Choose your commands</h3>
+          <div class="command-workspace">
+            <div class="command-columns">
+              <article class="command-panel" id="listOfCommands" data-panel="commands">
+                <div class="panel-headline">
+                  <div class="panel-icon"><i class="fas fa-list-check"></i></div>
+                  <div>
+                    <h3>Commands</h3>
+                    <p>Select which commands stay active for your bot.</p>
+                  </div>
                 </div>
-                <p class="card-copy">
-                  Enable the commands you want the chatbot to recognize instantly.
+                <div class="panel-actions">
+                  <button class="command-action" onclick="selectAllCommands()">
+                    <i class="fas fa-check-double"></i>
+                    <span>Select everything</span>
+                  </button>
+                </div>
+                <div class="command-collection" data-collection role="list"></div>
+                <p class="empty-state" data-empty>
+                  Commands will appear here once loaded.
                 </p>
-                <button class="btn btn-success btn-block" onclick="selectAllCommands()">
-                  <i class="fas fa-check-double"></i>
-                  Select all commands
-                </button>
               </article>
 
-              <article class="command-card" id="listOfCommandsEvent">
-                <div class="card-header">
-                  <div class="card-icon"><i class="fas fa-bolt"></i></div>
-                  <h3>Choose your event commands</h3>
+              <article class="command-panel" id="listOfCommandsEvent" data-panel="events">
+                <div class="panel-headline">
+                  <div class="panel-icon"><i class="fas fa-bolt"></i></div>
+                  <div>
+                    <h3>Event commands</h3>
+                    <p>Fine-tune automated responses triggered by events.</p>
+                  </div>
                 </div>
-                <p class="card-copy">
-                  Configure automatic responses triggered by user interactions.
+                <div class="panel-actions">
+                  <button class="command-action" onclick="selectAllEvents()">
+                    <i class="fas fa-bolt-lightning"></i>
+                    <span>Toggle all events</span>
+                  </button>
+                </div>
+                <div class="command-collection" data-collection role="list"></div>
+                <p class="empty-state" data-empty>
+                  Event commands will appear here once loaded.
                 </p>
-                <button class="btn btn-success btn-block" onclick="selectAllEvents()">
-                  <i class="fas fa-bolt-lightning"></i>
-                  Select all events
-                </button>
               </article>
 
-              <article class="command-card" id="prefixOfCommands">
-                <div class="card-header">
-                  <div class="card-icon"><i class="fas fa-hashtag"></i></div>
-                  <h3>Provide a prefix</h3>
+              <article class="command-panel" id="prefixOfCommands">
+                <div class="panel-headline">
+                  <div class="panel-icon"><i class="fas fa-hashtag"></i></div>
+                  <div>
+                    <h3>Command prefix</h3>
+                    <p>Type a prefix or use <strong>non-prefix</strong> to disable.</p>
+                  </div>
                 </div>
-                <p class="card-copy">
-                  Set a command prefix or enter <strong>non-prefix</strong> to disable it.
-                </p>
-                <input
-                  type="text"
-                  id="inputOfPrefix"
-                  placeholder="Enter prefix or type 'non-prefix'"
-                />
+                <label class="field-tile" for="inputOfPrefix">
+                  <span class="field-label">Prefix</span>
+                  <input
+                    type="text"
+                    id="inputOfPrefix"
+                    placeholder="Enter prefix or type 'non-prefix'"
+                  />
+                </label>
               </article>
 
-              <article class="command-card" id="adminOfCommands">
-                <div class="card-header">
-                  <div class="card-icon"><i class="fas fa-user-shield"></i></div>
-                  <h3>Provide admin UID</h3>
+              <article class="command-panel" id="adminOfCommands">
+                <div class="panel-headline">
+                  <div class="panel-icon"><i class="fas fa-user-shield"></i></div>
+                  <div>
+                    <h3>Admin UID</h3>
+                    <p>Assign a UID or keep the <strong>default</strong> admin.</p>
+                  </div>
                 </div>
-                <p class="card-copy">
-                  Secure admin access by assigning a UID, or use <strong>default</strong> to keep the standard.
-                </p>
-                <input
-                  type="text"
-                  id="inputOfAdmin"
-                  placeholder="Enter UID or type 'default'"
-                />
+                <label class="field-tile" for="inputOfAdmin">
+                  <span class="field-label">Admin UID</span>
+                  <input
+                    type="text"
+                    id="inputOfAdmin"
+                    placeholder="Enter UID or type 'default'"
+                  />
+                </label>
               </article>
             </div>
 
             <aside class="command-aside glass-card">
               <h4>Before you deploy</h4>
               <ul>
-                <li>Double-check that the correct commands are enabled.</li>
-                <li>Use a prefix that matches your community standards.</li>
-                <li>Only share cookies with team members you trust.</li>
+                <li>Confirm the toggles match the commands you expect.</li>
+                <li>Align prefixes with the communities you manage.</li>
+                <li>Share cookies responsibly with teammates you trust.</li>
               </ul>
               <p>
-                When everything looks good, confirm the agreement and deploy. You can return here anytime to update the configuration.
+                Every card above is clickable. Come back anytime to refresh the
+                list, add new commands, or adjust your automation rules.
               </p>
             </aside>
+          </div>
+        </div>
+      </section>
 
-      <section class="content-section commands-section">
+      <section class="agreement" aria-labelledby="agreement-title">
         <div class="container">
-          <div class="section-header text-center">
-            <span class="badge badge-pill badge-light">Configuration</span>
-            <h2 class="section-heading">Command Builder</h2>
-            <p class="section-subheading">
-              Customize your deployment workflow and automate responses effortlessly.
-            </p>
-          </div>
-
-          <div class="command-grid">
-            <div class="command-card" id="listOfCommands">
-              <h3>Choose Your Commands</h3>
-              <p class="card-description">
-                Enable the commands you want the chatbot to recognize instantly.
+          <div class="agreement-card glass-card">
+            <div class="agreement-copy">
+              <h3 id="agreement-title">Ready to deploy?</h3>
+              <p>
+                Review the disclaimer and confirm you understand the terms. The
+                button unlocks as soon as you agree.
               </p>
-              <button class="btn btn-success btn-block" onclick="selectAllCommands()">
-                <i class="fas fa-check-double mr-2"></i>Select All Commands
-              </button>
             </div>
-
-            <div class="command-card" id="listOfCommandsEvent">
-              <h3>Choose Your Event Commands</h3>
-              <p class="card-description">
-                Configure automatic responses triggered by user interactions.
-              </p>
-              <button class="btn btn-success btn-block" onclick="selectAllEvents()">
-                <i class="fas fa-bolt mr-2"></i>Select All Events
-              </button>
-            </div>
-
-            <div class="command-card" id="prefixOfCommands">
-              <h3>Provide a Prefix</h3>
-              <p class="card-description">
-                Set a command prefix or enter <strong>non-prefix</strong> to disable it.
-              </p>
-              <input
-                type="text"
-                id="inputOfPrefix"
-                placeholder="Enter prefix or type 'non-prefix'"
-              />
-            </div>
-
-            <div class="command-card" id="adminOfCommands">
-              <h3>Provide Admin UID</h3>
-              <p class="card-description">
-                Secure admin access by assigning a UID, or use <strong>default</strong> to keep the standard.
-              </p>
-              <input
-                type="text"
-                id="inputOfAdmin"
-                placeholder="Enter UID or type 'default'"
-              />
-            </div>
-
-          </div>
-
-          <div class="agreement-card">
-            <div class="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                id="agreeCheckbox"
-                class="custom-control-input"
-              />
-              <label class="custom-control-label" for="agreeCheckbox">
-                I have read, understood, and agreed to the Terms and Conditions.
+            <div class="agreement-actions">
+              <label class="agreement-toggle" for="agreeCheckbox">
+                <input type="checkbox" id="agreeCheckbox" />
+                <span class="toggle-visual" aria-hidden="true">
+                  <span class="toggle-thumb"></span>
+                </span>
+                <span class="toggle-label">
+                  I have read, understood, and agreed to the Terms and
+                  Conditions.
+                </span>
               </label>
+              <button
+                class="btn btn-primary"
+                id="submitButton"
+                onclick="State()"
+                disabled
+              >
+                Deploy configuration
+              </button>
+              <div id="result" class="result-message" role="alert"></div>
             </div>
-            <button
-
-              class="btn btn-primary"
-              class="btn btn-primary mt-4"
-
-              id="submitButton"
-              onclick="State()"
-              disabled
-            >
-
-              Deploy configuration
-
-              Deploy Configuration
-
-            </button>
-            <div id="result" class="result-message" role="alert"></div>
           </div>
         </div>
       </section>
     </main>
-
 
     <footer class="site-footer">
       <div class="container footer-inner">
         <div class="footer-meta">
           <span>Time: <strong id="time"></strong></span>
           <span>Ping: <strong id="ping"></strong></span>
-
-    <footer class="footer">
-      <div class="container footer-content">
-        <div class="footer-meta">
-          <p>Time: <span id="time"></span></p>
-          <p>Ping: <span id="ping"></span></p>
-
         </div>
         <p class="footer-note">Built for reliability and control.</p>
       </div>
