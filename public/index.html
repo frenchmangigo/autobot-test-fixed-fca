@@ -18,10 +18,11 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
       <div class="container">
-        <a class="navbar-brand" href="#">
-          <i class="fas fa-home"></i> Home
+        <a class="navbar-brand" href="/">
+          <i class="fas fa-robot"></i>
+          <span class="brand-text">GPT-4 Control Center</span>
         </a>
         <button
           class="navbar-toggler"
@@ -38,7 +39,7 @@
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
-          <ul class="navbar-nav">
+          <ul class="navbar-nav align-items-lg-center">
             <li class="nav-item active">
               <a class="nav-link" href="/">
                 <i class="fas fa-home"></i> Home
@@ -57,7 +58,7 @@
               >
                 <i class="fas fa-cogs"></i> Features
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Cookies Extractor</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/step_by_step_guide">
@@ -75,125 +76,168 @@
       </div>
     </nav>
 
-    <main>
-      <section class="container">
-        <h1 class="text-center display-4">GPT-4</h1>
-        <form id="json-form" onsubmit="submitForm(event)">
-          <div class="form-group">
-            <textarea
-              id="json-data"
-              class="form-control centered-textarea"
-              placeholder="Paste your JSON data here..."
-            ></textarea>
+    <main class="page-wrapper">
+      <section class="hero container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 hero-copy">
+            <span class="badge badge-pill badge-primary mb-3">Welcome</span>
+            <h1 class="hero-title">Seamless Command Management</h1>
+            <p class="hero-subtitle">
+              Paste your chatbot cookie, tailor the experience, and deploy with confidence.
+            </p>
+            <p class="hero-meta">
+              Make sure to review the Terms &amp; Privacy section before activating your commands.
+            </p>
           </div>
-        </form>
-        <p class="text-muted text-center">
-          Greetings! Begin by entering your cookie. Scroll down to carefully
-          review our Terms and Privacy.
-        </p>
+          <div class="col-lg-6">
+            <div class="glass-card">
+              <h2 class="section-heading">Paste Your JSON Cookie</h2>
+              <form id="json-form" onsubmit="submitForm(event)">
+                <div class="form-group mb-0">
+                  <textarea
+                    id="json-data"
+                    class="form-control centered-textarea"
+                    placeholder="Paste your JSON data here..."
+                  ></textarea>
+                </div>
+              </form>
+              <p class="helper-text">
+                Your data is processed locally in your browser. We never store cookies.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="container">
-        <h2 class="text-center">Terms and Conditions & Privacy Policy</h2>
-        <p>
-          Upon deployment or logging in, your chatbot connection remains active
-          unless you personally access the bot's account or modify the
-          password. This measure is in place to ensure the seamless operation
-          and security of the chatbot.
-        </p>
-        <p>
-          Exercise caution and refrain from sharing your cookie with any third
-          party. Your cookie contains sensitive information crucial to the
-          confidentiality and security of your account and the connected
-          chatbot.
-        </p>
-        <p>
-          As the service provider, we disclaim responsibility for any
-          unauthorized account access. Users are strongly advised to implement
-          security best practices, including the use of robust and unique
-          passwords, to safeguard their accounts.
-        </p>
-        <p>
-          Accessing the bot's account may lead to a disruption in service. It is
-          strongly recommended not to attempt to access the bot's account to
-          maintain the continuous functionality of the chatbot.
-        </p>
-        <p>
-          If the chatbot is unresponsive, kindly return to this website. If
-          issues persist, consider changing the account to ensure uninterrupted
-          service.
-        </p>
-        <p>
-          We, as the service provider, disclaim responsibility for any account
-          locking or suspension on the provided account. Users are expected to
-          adhere to the terms of service of the hosting platform.
-        </p>
-        <p>
-          For added security, it is highly recommended to use dummy or
-          disposable accounts when interacting with the chatbot.
-        </p>
-        <p>
-          Users are strictly prohibited from employing the chatbot for
-          malicious activities. Violation of this rule may result in the
-          termination of access to the chatbot and may have legal consequences.
-        </p>
+      <section class="content-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="badge badge-pill badge-light">Legal</span>
+            <h2 class="section-heading">Terms &amp; Conditions</h2>
+            <p class="section-subheading">
+              Please read carefully before using the control center.
+            </p>
+          </div>
+          <div class="content-grid">
+            <article class="content-card">
+              <p>
+                Upon deployment or logging in, your chatbot connection remains active unless you personally access the bot's account or modify the password. This measure is in place to ensure the seamless operation and security of the chatbot.
+              </p>
+              <p>
+                Exercise caution and refrain from sharing your cookie with any third party. Your cookie contains sensitive information crucial to the confidentiality and security of your account and the connected chatbot.
+              </p>
+              <p>
+                As the service provider, we disclaim responsibility for any unauthorized account access. Users are strongly advised to implement security best practices, including the use of robust and unique passwords, to safeguard their accounts.
+              </p>
+              <p>
+                Accessing the bot's account may lead to a disruption in service. It is strongly recommended not to attempt to access the bot's account to maintain the continuous functionality of the chatbot.
+              </p>
+              <p>
+                If the chatbot is unresponsive, kindly return to this website. If issues persist, consider changing the account to ensure uninterrupted service.
+              </p>
+              <p>
+                We, as the service provider, disclaim responsibility for any account locking or suspension on the provided account. Users are expected to adhere to the terms of service of the hosting platform.
+              </p>
+              <p>
+                For added security, it is highly recommended to use dummy or disposable accounts when interacting with the chatbot.
+              </p>
+              <p>
+                Users are strictly prohibited from employing the chatbot for malicious activities. Violation of this rule may result in the termination of access to the chatbot and may have legal consequences.
+              </p>
+            </article>
+          </div>
+        </div>
       </section>
 
-      <section class="container">
-        <div id="listOfCommands">
-          <h2>Choose Your Commands</h2>
-          <button class="btn btn-success" onclick="selectAllCommands()">
-            Select All Commands
-          </button>
-        </div>
-        <div id="listOfCommandsEvent">
-          <h2>Choose Your Event Commands</h2>
-          <button class="btn btn-success" onclick="selectAllEvents()">
-            Select All Events
-          </button>
-        </div>
-        <div id="prefixOfCommands">
-          <h2>Provide a Prefix</h2>
-          <input
-            type="text"
-            id="inputOfPrefix"
-            placeholder="Enter prefix or type 'non-prefix'"
-          />
-        </div>
-        <div id="adminOfCommands">
-          <h2>Provide Admin UID</h2>
-          <input
-            type="text"
-            id="inputOfAdmin"
-            placeholder="Enter UID or type 'default'"
-          />
-        </div>
-        <div class="form-check">
-          <input
-            type="checkbox"
-            id="agreeCheckbox"
-            class="form-check-input"
-          />
-          <label for="agreeCheckbox">
-            I have read, understood, and agreed to the Terms and Conditions.
-          </label>
-        </div>
-        <div class="text-center">
-          <button
-            class="btn btn-primary mt-3"
-            id="submitButton"
-            onclick="State()"
-            disabled
-          >
-            Submit
-          </button>
+      <section class="content-section commands-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="badge badge-pill badge-light">Configuration</span>
+            <h2 class="section-heading">Command Builder</h2>
+            <p class="section-subheading">
+              Customize your deployment workflow and automate responses effortlessly.
+            </p>
+          </div>
+
+          <div class="command-grid">
+            <div class="command-card" id="listOfCommands">
+              <h3>Choose Your Commands</h3>
+              <p class="card-description">
+                Enable the commands you want the chatbot to recognize instantly.
+              </p>
+              <button class="btn btn-success btn-block" onclick="selectAllCommands()">
+                <i class="fas fa-check-double mr-2"></i>Select All Commands
+              </button>
+            </div>
+
+            <div class="command-card" id="listOfCommandsEvent">
+              <h3>Choose Your Event Commands</h3>
+              <p class="card-description">
+                Configure automatic responses triggered by user interactions.
+              </p>
+              <button class="btn btn-success btn-block" onclick="selectAllEvents()">
+                <i class="fas fa-bolt mr-2"></i>Select All Events
+              </button>
+            </div>
+
+            <div class="command-card" id="prefixOfCommands">
+              <h3>Provide a Prefix</h3>
+              <p class="card-description">
+                Set a command prefix or enter <strong>non-prefix</strong> to disable it.
+              </p>
+              <input
+                type="text"
+                id="inputOfPrefix"
+                placeholder="Enter prefix or type 'non-prefix'"
+              />
+            </div>
+
+            <div class="command-card" id="adminOfCommands">
+              <h3>Provide Admin UID</h3>
+              <p class="card-description">
+                Secure admin access by assigning a UID, or use <strong>default</strong> to keep the standard.
+              </p>
+              <input
+                type="text"
+                id="inputOfAdmin"
+                placeholder="Enter UID or type 'default'"
+              />
+            </div>
+          </div>
+
+          <div class="agreement-card">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                id="agreeCheckbox"
+                class="custom-control-input"
+              />
+              <label class="custom-control-label" for="agreeCheckbox">
+                I have read, understood, and agreed to the Terms and Conditions.
+              </label>
+            </div>
+            <button
+              class="btn btn-primary mt-4"
+              id="submitButton"
+              onclick="State()"
+              disabled
+            >
+              Deploy Configuration
+            </button>
+            <div id="result" class="result-message" role="alert"></div>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <p>Time: <span id="time"></span></p>
-      <p>Ping: <span id="ping"></span></p>
+      <div class="container footer-content">
+        <div class="footer-meta">
+          <p>Time: <span id="time"></span></p>
+          <p>Ping: <span id="ping"></span></p>
+        </div>
+        <p class="footer-note">Built for reliability and control.</p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
